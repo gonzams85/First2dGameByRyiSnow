@@ -34,6 +34,7 @@ public class GamePanel extends JPanel implements Runnable {
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
+    public EventHandler eHandler = new EventHandler(this);
     Thread gameThread;
 
     //ENTITY AND OBJECT
@@ -96,11 +97,7 @@ public class GamePanel extends JPanel implements Runnable {
                 delta--;
                 drawCount++;
             }
-           /* if(timer>=1000000000){ //Muestra los FPS en la consola
-                System.out.println("FPS" + drawCount);
-                drawCount = 0;
-                timer = 0;
-            }*/
+
         }
     }
     public void update(){
