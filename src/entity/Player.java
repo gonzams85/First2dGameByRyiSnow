@@ -73,19 +73,23 @@ public class Player extends Entity {
             else if(keyH.rightPressed == true){
                 direction = "right";
             }
-            //CHECK TILE COLLISION
+            // CHECK TILE COLLISION
             collisionOn = false;
             gp.cChecker.checkTile(this);
 
-            //CHECK OBJECT COLLISION
+            // CHECK OBJECT COLLISION
             int objIndex = gp.cChecker.checkObject(this,true);
             pickUpObject(objIndex);
 
-            //CHECK NPC COLLISION
+            // CHECK NPC COLLISION
             int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
             interactNPC(npcIndex);
 
-            //CHECK EVENT
+            // CHECK MONSTER COLLISION
+            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            contactMonster(monsterIndex);
+
+            // CHECK EVENT
             gp.eHandler.checkEvent();
 
             gp.keyH.enterPressed = false;
@@ -138,6 +142,14 @@ public class Player extends Entity {
                 gp.npc[i].speak();
             }
         }
+    }
+    public void contactMonster(int i) {
+
+        if(i != 999) {
+
+            life -= 1;
+        }
+
     }
 
     public void draw (Graphics2D g2){
