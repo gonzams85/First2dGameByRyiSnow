@@ -7,9 +7,12 @@ import java.util.Random;
 
 public class MON_GreenSlime extends Entity {
 
+    GamePanel gp;
 
     public MON_GreenSlime(GamePanel gp) {
         super(gp);
+
+        this.gp = gp;
 
         type = 2;
         name = "Green Slime";
