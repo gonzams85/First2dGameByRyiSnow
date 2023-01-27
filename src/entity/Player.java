@@ -57,9 +57,10 @@ public class Player extends Entity {
         right1 = setup("/player/boy_right_1");
         right2 = setup("/player/boy_right_2");
     }
+
     public void update(){
         if(keyH.upPressed == true || keyH.downPressed == true ||
-                keyH.leftPressed == true || keyH.rightPressed == true){
+                keyH.leftPressed == true || keyH.rightPressed == true || keyH.enterPressed == true){
 
             if(keyH.upPressed == true){
                 direction = "up";
@@ -73,6 +74,7 @@ public class Player extends Entity {
             else if(keyH.rightPressed == true){
                 direction = "right";
             }
+
             // CHECK TILE COLLISION
             collisionOn = false;
             gp.cChecker.checkTile(this);
@@ -92,26 +94,17 @@ public class Player extends Entity {
             // CHECK EVENT
             gp.eHandler.checkEvent();
 
-            gp.keyH.enterPressed = false;
-
-
             //IF COLLISION IS FALSE, PLAYER CAN MOVE
-            if(collisionOn == false){
+            if(collisionOn == false && keyH.enterPressed == false){
                 switch(direction){
-                    case "up":
-                        worldY -= speed;
-                        break;
-                    case "down":
-                        worldY += speed;
-                        break;
-                    case "left":
-                        worldX -= speed;
-                        break;
-                    case "right":
-                        worldX += speed;
-                        break;
+                    case "up": worldY -= speed; break;
+                    case "down": worldY += speed; break;
+                    case "left": worldX -= speed; break;
+                    case "right": worldX += speed; break;
                 }
             }
+
+            gp.keyH.enterPressed = false;
 
             spriteCounter++;
             if(spriteCounter > 12){
